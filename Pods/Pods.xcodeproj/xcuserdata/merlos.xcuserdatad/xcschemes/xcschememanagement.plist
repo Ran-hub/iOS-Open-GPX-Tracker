@@ -9,22 +9,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>CoreGPX.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>CryptoSwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>Pods-OpenGpxTracker.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>TBXML.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>iOS-GPX-Framework.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

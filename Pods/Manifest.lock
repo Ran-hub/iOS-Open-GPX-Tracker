@@ -1,44 +1,37 @@
 PODS:
   - Cache (5.2.0)
+  - CoreGPX (0.3.3)
   - CryptoSwift (0.12.0)
-  - iOS-GPX-Framework (0.0.4):
-    - TBXML (~> 1.5)
-  - TBXML (1.5)
 
 DEPENDENCIES:
   - Cache (from `https://github.com/hyperoslo/Cache`)
+  - CoreGPX (from `https://github.com/vincentneo/CoreGPX`)
   - CryptoSwift (from `https://github.com/krzyzanowskim/CryptoSwift`)
-  - iOS-GPX-Framework (from `http://github.com/merlos/iOS-GPX-Framework`)
-
-SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
-    - TBXML
 
 EXTERNAL SOURCES:
   Cache:
     :git: https://github.com/hyperoslo/Cache
+  CoreGPX:
+    :git: https://github.com/vincentneo/CoreGPX
   CryptoSwift:
     :git: https://github.com/krzyzanowskim/CryptoSwift
-  iOS-GPX-Framework:
-    :git: http://github.com/merlos/iOS-GPX-Framework
 
 CHECKOUT OPTIONS:
   Cache:
     :commit: 8c42c575cf28b2ff0e780c9728721e9a8891c92e
     :git: https://github.com/hyperoslo/Cache
+  CoreGPX:
+    :commit: 6c0fe4519a6de415940d9406bffc67fe8f6f43a4
+    :git: https://github.com/vincentneo/CoreGPX
   CryptoSwift:
     :commit: 2bcb008fe23d286e5da79311051e19b3345f1cd5
     :git: https://github.com/krzyzanowskim/CryptoSwift
-  iOS-GPX-Framework:
-    :commit: 5fd50abbd722e0d16fc68dfb5b8a4251cc82a87e
-    :git: http://github.com/merlos/iOS-GPX-Framework
 
 SPEC CHECKSUMS:
   Cache: 807c5d86d01a177f06ede9865add3aea269bbfd4
+  CoreGPX: 0428c2a2c2ac78d54800d6c7b19d051796183e43
   CryptoSwift: 1c07ca50843dd48bc54e6ea53d7a4dba3b645716
-  iOS-GPX-Framework: 38b56820461b99cd7f1fb6cf1e0621f72d63e872
-  TBXML: 9f9dadb239f2f2af1dadb87fe43a0ce6e479379a
 
-PODFILE CHECKSUM: 333be654f373ee0461dba92af9c045211a29d6b7
+PODFILE CHECKSUM: 890addc129d90d0ce8565a7f3c0df3329457a107
 
 COCOAPODS: 1.5.3

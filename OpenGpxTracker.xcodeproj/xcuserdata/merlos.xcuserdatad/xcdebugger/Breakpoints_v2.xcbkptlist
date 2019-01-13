@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OpenGpxTracker/ViewController.swift"
-            timestampString = "559922919.179175"
+            timestampString = "569092897.2194999"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1032"
-            endingLineNumber = "1032"
-            landmarkName = "locationManager(_:didUpdateLocations:)"
+            startingLineNumber = "1034"
+            endingLineNumber = "1034"
+            landmarkName = "locationManager(_:didFailWithError:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OpenGpxTracker/ViewController.swift"
-            timestampString = "559922919.179224"
+            timestampString = "569092897.219569"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1032"
-            endingLineNumber = "1032"
-            landmarkName = "locationManager(_:didUpdateLocations:)"
+            startingLineNumber = "1034"
+            endingLineNumber = "1034"
+            landmarkName = "locationManager(_:didFailWithError:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -42,12 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OpenGpxTracker/ViewController.swift"
-            timestampString = "559922919.179274"
+            timestampString = "569092897.2196161"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1032"
-            endingLineNumber = "1032"
-            landmarkName = "locationManager(_:didUpdateLocations:)"
+            startingLineNumber = "1034"
+            endingLineNumber = "1034"
+            landmarkName = "locationManager(_:didFailWithError:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -58,12 +58,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OpenGpxTracker/ViewController.swift"
-            timestampString = "559922919.179322"
+            timestampString = "569092897.219668"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1032"
-            endingLineNumber = "1032"
-            landmarkName = "locationManager(_:didUpdateLocations:)"
+            startingLineNumber = "1034"
+            endingLineNumber = "1034"
+            landmarkName = "locationManager(_:didFailWithError:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

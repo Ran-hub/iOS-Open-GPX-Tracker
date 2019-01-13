@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import MessageUI
+import CoreGPX
 
 /// Text displayed when there are no GPX files in the folder.
 let kNoFiles = "No gpx files"
@@ -219,8 +220,8 @@ class GPXFilesTableViewController: UITableViewController, UINavigationBarDelegat
             return
         }
         print("Load gpx File: \(gpxFileInfo.fileName)")
-        let gpx = GPXParser.parseGPX(atPath: gpxFileInfo.fileURL.path)
-        self.delegate?.didLoadGPXFileWithName(gpxFileInfo.fileName, gpxRoot: gpx!)
+        let gpx = GPXParser.init(withURL: gpxFileInfo.fileURL).parsedData()
+        self.delegate?.didLoadGPXFileWithName(gpxFileInfo.fileName, gpxRoot: gpx)
         self.dismiss(animated: true, completion: nil)
         
     }

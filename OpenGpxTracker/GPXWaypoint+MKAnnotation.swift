@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import MapKit
+import CoreGPX
 
 extension GPXWaypoint : MKAnnotation {
     
@@ -57,7 +58,7 @@ extension GPXWaypoint : MKAnnotation {
             self.longitude = CGFloat(newValue.longitude)
         }
         get {
-            return CLLocationCoordinate2D(latitude: CLLocationDegrees(self.latitude), longitude: CLLocationDegrees(self.longitude))
+            return CLLocationCoordinate2D(latitude: CLLocationDegrees(self.latitude!), longitude: CLLocationDegrees(self.longitude!))
         }
     }    
 }

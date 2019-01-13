@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 //import WebKit //<-- To support ios7 UIWebview will be used
 
 

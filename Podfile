@@ -2,7 +2,8 @@ platform :ios, '8.0'
 
 target 'OpenGpxTracker' do
   use_frameworks!
-  pod 'iOS-GPX-Framework', git: 'http://github.com/merlos/iOS-GPX-Framework'
+  # pod 'iOS-GPX-Framework', git: 'http://github.com/merlos/iOS-GPX-Framework'
+  pod 'CoreGPX', git: 'https://github.com/vincentneo/CoreGPX'
   pod 'Cache', git: 'https://github.com/hyperoslo/Cache'
   pod 'CryptoSwift', git: 'https://github.com/krzyzanowskim/CryptoSwift'
 end
