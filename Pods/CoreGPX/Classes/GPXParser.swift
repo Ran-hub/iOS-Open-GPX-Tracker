@@ -58,7 +58,6 @@ open class GPXParser: NSObject, XMLParserDelegate {
     
     // Elements
     var waypoint = GPXWaypoint()
-
     var route = GPXRoute()
     var routepoint = GPXRoutePoint()
     var track = GPXTrack()
@@ -250,11 +249,9 @@ open class GPXParser: NSObject, XMLParserDelegate {
             
             self.track.add(trackSegments: tracksegements)
             
-            self.tracks.append(track)
-            track = GPXTrack()
-            //let tempTrack = GPXTrack()
-            //tempTrack.tracksegments = self.track.tracksegments
-            //self.tracks.append(tempTrack)
+            let tempTrack = GPXTrack()
+            tempTrack.tracksegments = self.track.tracksegments
+            self.tracks.append(tempTrack)
             
             //clear values
             isTrack = false
@@ -262,12 +259,9 @@ open class GPXParser: NSObject, XMLParserDelegate {
         case "trkseg":
             self.tracksegment.add(trackpoints: trackpoints)
             
-            self.tracksegements.append(tracksegment)
-            tracksegment = GPXTrackSegment()
-            
-            //let tempTrackSegment = GPXTrackSegment()
-            //tempTrackSegment.trackpoints = self.tracksegment.trackpoints
-            //self.tracksegements.append(tempTrackSegment)
+            let tempTrackSegment = GPXTrackSegment()
+            tempTrackSegment.trackpoints = self.tracksegment.trackpoints
+            self.tracksegements.append(tempTrackSegment)
             
             // clear values
             isTrackSegment = false
