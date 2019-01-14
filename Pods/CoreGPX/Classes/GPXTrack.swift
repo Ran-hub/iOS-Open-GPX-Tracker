@@ -34,11 +34,7 @@ open class GPXTrack: GPXElement {
     
     open func add(link: GPXLink?) {
         if link != nil {
-            let contains = links.contains(link!)
-            if contains == false {
-                link?.parent = self
-                links.append(link!)
-            }
+            links.append(link!)
         }
     }
     
@@ -67,11 +63,8 @@ open class GPXTrack: GPXElement {
     
     open func add(trackSegment: GPXTrackSegment?) {
         if trackSegment != nil {
-            let contains = tracksegments.contains(trackSegment!)
-            if contains == false {
-                trackSegment?.parent = self
-                tracksegments.append(trackSegment!)
-            }
+            trackSegment?.parent = self
+            tracksegments.append(trackSegment!)
         }
     }
     

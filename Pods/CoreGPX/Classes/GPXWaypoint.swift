@@ -52,11 +52,7 @@ open class GPXWaypoint: GPXElement {
     
     open func add(link: GPXLink?) {
         if link != nil {
-            let contains = links.contains(link!)
-            if contains == false {
-                link?.parent = self
-                links.append(link!)
-            }
+            links.append(link!)
         }
     }
     

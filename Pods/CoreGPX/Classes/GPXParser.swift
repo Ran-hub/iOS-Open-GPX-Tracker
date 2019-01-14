@@ -18,6 +18,7 @@ open class GPXParser: NSObject, XMLParserDelegate {
         self.parser = XMLParser(data: data)
         super.init()
         parser.delegate = self
+        print("initializing parser")
         parser.parse()
     }
     
@@ -99,24 +100,25 @@ open class GPXParser: NSObject, XMLParserDelegate {
         element = elementName
         
         switch elementName {
-        case "metadata":
-            isMetadata = true
-        case "wpt":
-            isWaypoint = true
-            latitude = value(from: attributeDict ["lat"])
-            longitude = value(from: attributeDict ["lon"])
-        case "rte":
-            isRoute = true
-        case "rtept":
-            isRoutePoint = true
-        case "trk":
-            isTrack = true
-        case "trkseg":
-            isTrackSegment = true
         case "trkpt":
             isTrackPoint = true
             latitude = value(from: attributeDict ["lat"])
             longitude = value(from: attributeDict ["lon"])
+        case "trkseg":
+            isTrackSegment = true
+        case "trk":
+            isTrack = true
+        case "wpt":
+            isWaypoint = true
+            latitude = value(from: attributeDict ["lat"])
+            longitude = value(from: attributeDict ["lon"])
+        case "metadata":
+            isMetadata = true
+        
+        case "rte":
+            isRoute = true
+        case "rtept":
+            isRoutePoint = true
         case "extensions":
             isExtension = true
         default: ()
@@ -126,12 +128,43 @@ open class GPXParser: NSObject, XMLParserDelegate {
     
     public func parser(_ parser: XMLParser, foundCharacters string: String) {
         
-        let foundString = string.trimmingCharacters(in: .whitespacesAndNewlines)
-        
-        if isWaypoint || isTrackPoint || isRoutePoint {
+        let foundString = string //= string.trimmingCharacters(in: .whitespacesAndNewlines)
+        if isTrackPoint {
+            trackpoint.latitude = latitude
+            trackpoint.longitude = longitude
+            switch element {
+            case "ele":
+                self.trackpoint.elevation = value(from: foundString)!
+            case "time":
+                self.trackpoint.set(date: foundString)
+            case "magvar":
+                self.trackpoint.magneticVariation = value(from: foundString)!
+            case "geoidheight":
+                self.trackpoint.geoidHeight = value(from: foundString)!
+            case "name":
+                self.trackpoint.name = foundString
+            case "desc":
+                self.trackpoint.desc = foundString
+            case "source":
+                self.trackpoint.source = foundString
+            case "sat":
+                self.trackpoint.satellites = Int(value(from: foundString)!)
+            case "hdop":
+                self.trackpoint.horizontalDilution = value(from: foundString)!
+            case "vdop":
+                self.trackpoint.verticalDilution = value(from: foundString)!
+            case "pdop":
+                self.trackpoint.positionDilution = value(from: foundString)!
+            case "ageofdgpsdata":
+                self.trackpoint.ageofDGPSData = value(from: foundString)!
+            case "dgpsid":
+                self.trackpoint.DGPSid = Int(value(from: foundString)!)
+            default: ()
+            }
+        }
+        if isWaypoint || isRoutePoint {
             waypoint.latitude = latitude
             waypoint.longitude = longitude
-            if foundString.isEmpty == false {
                 switch element {
                 case "ele":
                     self.waypoint.elevation = value(from: foundString)!
@@ -160,7 +193,6 @@ open class GPXParser: NSObject, XMLParserDelegate {
                 case "dgpsid":
                     self.waypoint.DGPSid = Int(value(from: foundString)!)
                 default: ()
-                }
             }
         }
         if isMetadata {
@@ -183,7 +215,33 @@ open class GPXParser: NSObject, XMLParserDelegate {
     
     public func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         switch elementName {
+        case "trkpt":
+            self.tracksegment.add(trackpoint: trackpoint)
+            trackpoint = GPXTrackPoint()
+            //let tempTrackPoint = GPXTrackPoint()
             
+            // copy values
+            //tempTrackPoint.elevation = self.waypoint.elevation
+            //tempTrackPoint.time = self.waypoint.time
+            //tempTrackPoint.magneticVariation = self.waypoint.magneticVariation
+            //tempTrackPoint.geoidHeight = self.waypoint.geoidHeight
+            //tempTrackPoint.name = self.waypoint.name
+            //tempTrackPoint.desc = self.waypoint.desc
+            //tempTrackPoint.source = self.waypoint.source
+            //tempTrackPoint.satellites = self.waypoint.satellites
+            //tempTrackPoint.horizontalDilution = self.waypoint.horizontalDilution
+            //tempTrackPoint.verticalDilution = self.waypoint.verticalDilution
+            //tempTrackPoint.positionDilution = self.waypoint.positionDilution
+            //tempTrackPoint.ageofDGPSData = self.waypoint.ageofDGPSData
+            //tempTrackPoint.DGPSid = self.waypoint.DGPSid
+            //tempTrackPoint.latitude = self.waypoint.latitude
+            //tempTrackPoint.longitude = self.waypoint.longitude
+            //self.tracksegment.add(trackpoint: trackpoint)
+            
+            // clear values
+            isTrackPoint = false
+            latitude = nil
+            longitude = nil
         case "metadata":
             isMetadata = false
             
@@ -247,11 +305,9 @@ open class GPXParser: NSObject, XMLParserDelegate {
             
             isRoutePoint = false
         case "trk":
-            
-            self.track.add(trackSegments: tracksegements)
-            
             self.tracks.append(track)
             track = GPXTrack()
+            track.tracksegments = []
             //let tempTrack = GPXTrack()
             //tempTrack.tracksegments = self.track.tracksegments
             //self.tracks.append(tempTrack)
@@ -260,45 +316,15 @@ open class GPXParser: NSObject, XMLParserDelegate {
             isTrack = false
             
         case "trkseg":
-            self.tracksegment.add(trackpoints: trackpoints)
-            
-            self.tracksegements.append(tracksegment)
+            track.add(trackSegment: tracksegment)
             tracksegment = GPXTrackSegment()
-            
+      
             //let tempTrackSegment = GPXTrackSegment()
             //tempTrackSegment.trackpoints = self.tracksegment.trackpoints
             //self.tracksegements.append(tempTrackSegment)
             
             // clear values
             isTrackSegment = false
-            
-        case "trkpt":
-            
-            let tempTrackPoint = GPXTrackPoint()
-            
-            // copy values
-            tempTrackPoint.elevation = self.waypoint.elevation
-            tempTrackPoint.time = self.waypoint.time
-            tempTrackPoint.magneticVariation = self.waypoint.magneticVariation
-            tempTrackPoint.geoidHeight = self.waypoint.geoidHeight
-            tempTrackPoint.name = self.waypoint.name
-            tempTrackPoint.desc = self.waypoint.desc
-            tempTrackPoint.source = self.waypoint.source
-            tempTrackPoint.satellites = self.waypoint.satellites
-            tempTrackPoint.horizontalDilution = self.waypoint.horizontalDilution
-            tempTrackPoint.verticalDilution = self.waypoint.verticalDilution
-            tempTrackPoint.positionDilution = self.waypoint.positionDilution
-            tempTrackPoint.ageofDGPSData = self.waypoint.ageofDGPSData
-            tempTrackPoint.DGPSid = self.waypoint.DGPSid
-            tempTrackPoint.latitude = self.waypoint.latitude
-            tempTrackPoint.longitude = self.waypoint.longitude
-            
-            self.trackpoints.append(tempTrackPoint)
-            
-            // clear values
-            isTrackPoint = false
-            latitude = nil
-            longitude = nil
         case "extensions":
             isExtension = false
         default: ()

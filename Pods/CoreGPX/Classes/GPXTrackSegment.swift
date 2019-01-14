@@ -31,18 +31,12 @@ open class GPXTrackSegment: GPXElement {
     
     open func add(trackpoint: GPXTrackPoint?) {
         if trackpoint != nil {
-            let contains = trackpoints.contains(trackpoint!)
-            if contains == false {
-                trackpoint?.parent = self
-                trackpoints.append(trackpoint!)
-            }
+            trackpoints.append(trackpoint!)
         }
     }
     
     open func add(trackpoints: [GPXTrackPoint]) {
-        for trackpoint in trackpoints {
-            self.add(trackpoint: trackpoint)
-        }
+        self.trackpoints += trackpoints
     }
     
     open func remove(trackpoint: GPXTrackPoint) {

@@ -30,11 +30,8 @@ open class GPXPointSegment: GPXElement {
     
     public func add(point: GPXPoint?) {
         if point != nil {
-            let contains = points.contains(point!)
-            if contains == false {
-                point?.parent = self
-                points.append(point!)
-            }
+            point?.parent = self
+            points.append(point!)
         }
     }
     

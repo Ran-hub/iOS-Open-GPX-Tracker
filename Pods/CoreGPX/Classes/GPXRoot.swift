@@ -56,11 +56,8 @@ open class GPXRoot: GPXElement {
     
     public func add(waypoint: GPXWaypoint?) {
         if waypoint != nil {
-            let contains = waypoints.contains(waypoint!)
-            if contains == false {
-                waypoint?.parent = self
-                waypoints.append(waypoint!)
-            }
+            waypoint?.parent = self
+            waypoints.append(waypoint!)
         }
     }
     
@@ -90,11 +87,7 @@ open class GPXRoot: GPXElement {
     
     public func add(route: GPXRoute?) {
         if route != nil {
-            let contains = routes.contains(route!)
-            if contains == false {
-                route?.parent = self
-                routes.append(route!)
-            }
+            routes.append(route!)
         }
     }
     
@@ -122,11 +115,7 @@ open class GPXRoot: GPXElement {
     
     public func add(track: GPXTrack?) {
         if track != nil {
-            let contains = tracks.contains(track!)
-            if contains == false {
-                track?.parent = self
-                tracks.append(track!)
-            }
+            tracks.append(track!)
         }
     }
     

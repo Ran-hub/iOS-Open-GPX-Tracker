@@ -70,12 +70,7 @@ open class GPXRoute: GPXElement {
     
     func add(routepoint: GPXRoutePoint?) {
         if routepoint != nil {
-            let contains = routepoints.contains(routepoint!)
-            
-            if contains == false {
-                routepoint?.parent = nil
-                routepoints.append(routepoint!)
-            }
+            routepoints.append(routepoint!)
         }
     }
     
